@@ -1,4 +1,4 @@
-class Personaje
+class Personaje:
     #atributos
     especie= "Humano"
     nombre= "Augustus Cole"
@@ -8,9 +8,9 @@ class Personaje
     
     def correr(self,status):
         if(status):
-            print("EL personaje " self.nombre + "esta corriendo " )
+            print("EL personaje "+ self.nombre + "esta corriendo")
         else:
-            print("EL personaje " self.nombre + "se detuvo" )
+            print("EL personaje " + self.nombre + "se detuvo" )
             
     def lanzarGranada(self):
         print("se lanzo granada ")
