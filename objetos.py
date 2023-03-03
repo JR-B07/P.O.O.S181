@@ -22,7 +22,7 @@ Heroe= Personaje(espH,nomH,altH)
 Villano= Personaje(espV,nomV,altV)
 
 #Ejemplo del uso del Set
-Heroe.setnombre("Pepe pana")
+Heroe.setnombre("GDR15")
 #.Instanciar un objeto 
 #Heroe= Personaje()
 
