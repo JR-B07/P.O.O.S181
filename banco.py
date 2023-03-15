@@ -14,6 +14,12 @@ class Bank:
     def add_account(self, account):
         self.accounts[account.account_number] = account
 
+    def abrir_ventanaSecundaria(self):
+        self.abrir_ventanaSecundaria = tk.Toplevel
+        self.abrir_ventanaSecundaria.title("Ventana secundaria")
+        self.abrir_ventanaSecundaria.config("300x400")
+
+
     def get_balance(self, account_number):
         if account_number in self.accounts:
             return self.accounts[account_number].balance
@@ -68,6 +74,7 @@ class BankGUI:
         self.deposit_button = tk.Button(self.root, text="Ingresar Efectivo", command=self.deposit)
         self.withdraw_button = tk.Button(self.root, text="Retirar Efectivo", command=self.withdraw)
         self.transfer_button = tk.Button(self.root, text="Depositar a Otra Cuenta", command=self.transfer)
+        self.abrir_ventanaSecundaria_button = tk.Button(self.root, text="Hola", command=self.abrir_ventanaSecundaria)
 
         # Colocar elementos en la ventana
         self.account_number_label.grid(row=0, column=0)
@@ -135,6 +142,7 @@ class BankGUI:
     def run(self):
         self.root.mainloop()
 
+    
 # Crear banco y cuentas de prueba
 bank = Bank()
 account1 = Account("123", "Juan Pérez", 25, 1000)
