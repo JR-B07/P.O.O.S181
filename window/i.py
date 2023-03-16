@@ -71,8 +71,3 @@ matricula_label.pack()
 
 # Iniciando el loop principal de la aplicación
 app.mainloop()
-    
-    
-    
-    
-    
