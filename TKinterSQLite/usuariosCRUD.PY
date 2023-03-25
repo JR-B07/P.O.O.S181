@@ -1,6 +1,17 @@
 from tkinter import *
 from tkinter import ttk
 import tkinter as tk
+from controladorBD import controladorBD
+from controladorBD import guardarUsuario
+#1 presentamos los archivo controlador vista
+
+#2 cremos 1 objeto de la clase controlador
+controlador= controladorBD()
+
+#Funcion para disparar el boton
+def ejecutaInsert():
+    controlador.guardarUsuario(varNom.get(),varCor.get(),varCon.get())
+
 
 ventana= Tk()
 ventana.title("CRUD de Usuarios")
@@ -30,7 +41,7 @@ varCon= tk.StringVar()
 lblCon= Label(pestaña1,text= "Nombre: ").pack()
 txtCoN= Entry(pestaña1,textvariable=varCon).pack()
 
-btnGuardar= Button(pestaña1, text= "contraseña: ").pack()
+btnGuardar= Button(pestaña1, text= "Guardar usuario",command=ejecutaInsert).pack()
 
 
 panel.add(pestaña1, text="Formulario de usuarios")
