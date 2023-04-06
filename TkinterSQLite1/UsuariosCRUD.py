@@ -120,3 +120,44 @@ treeview.column(4, width=200)
 subCons = Label(pestaña3, text="Usuarios existentes ", fg="black",font=("Modern",18)).pack()
 treeview.pack()
 
+#Pestaña 4: Actualizar Usuario
+
+titulo4 = Label(pestaña4,text="Actualizar Usuarios", fg='blue', font=("Modern",18)).pack()
+
+varIdAct = StringVar()
+Label(pestaña4, text="ID de Usuario: ").pack()
+Entry(pestaña4, textvariable=varIdAct).pack()
+
+varNomAct = StringVar()
+Label(pestaña4, text="Nombre Nuevo: ").pack()
+Entry(pestaña4, textvariable=varNomAct).pack()
+
+varCorAct = StringVar()
+Label(pestaña4, text="Correo Nuevo: ").pack()
+Entry(pestaña4, textvariable=varCorAct).pack()
+
+varConAct = StringVar()
+Label(pestaña4, text="Contraseña Nueva: ").pack()
+Entry(pestaña4, textvariable=varConAct, show="*").pack()
+
+btnActualizar = Button(pestaña4, text="Actualizar", command=ejecutarActUs)
+btnActualizar.pack()
+
+#Pestaña 5: Eliminar Usuario
+
+titulo5 = Label(pestaña5,text="Eliminar Usuario", fg='blue', font=("Modern",18)).pack()
+
+varIdElim = StringVar()
+Label(pestaña5, text="ID de Usuario: ").pack()
+Entry(pestaña5, textvariable=varIdElim).pack()
+
+btnEliminar = Button(pestaña5, text="Eliminar Usuario", command=ejecutaBorrar)
+btnEliminar.pack()
+
+panel.add(pestaña1, text='Formulario de usuarios')
+panel.add(pestaña2, text='Buscar usuario')
+panel.add(pestaña3, text='Consultar usuarios')
+panel.add(pestaña4, text='Actualizar usuario')
+panel.add(pestaña5, text='Eliminar usuario')
+
+ventana.mainloop()
