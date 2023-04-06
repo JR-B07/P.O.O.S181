@@ -24,7 +24,36 @@ def ejecutaSelectU():
    else:
        messagebox.showinfo("Usuario no encontrado")
 
+def ejecutarConsulta():
+   usuarios = controlador.importUsu()
+   treeview.delete(*treeview.get_children())
+   if usuarios:
+      for usuario in usuarios:
+         treeview.insert("","end", values = (usuario[0], usuario[1], usuario[2], usuario[3]))
+   else:
+      messagebox.showinfo("No existe usuarios")
 
+
+def ejecutarActUs():
+    idUsuario = varIdAct.get()
+    nombreUsuario = varNomAct.get()
+    correoUsuario = varCorAct.get()
+    contrasenaUsuario = varConAct.get()
+    confirmacion = messagebox.askyesno("¿Estás seguro que deseas actualizar los datos del usuario?")
+    if confirmacion:
+        controlador.ModifUsu(idUsuario, nombreUsuario, correoUsuario, contrasenaUsuario)
+        messagebox.showinfo("Actualización exitosa")
+    else:
+        messagebox.showinfo("Actualización cancelada")
+
+def ejecutaBorrar():
+    idUsuario = varIdElim.get()
+    confirmacion = messagebox.askyesno("Confirmación")
+    if confirmacion:
+        controlador.elimUsuario(idUsuario)
+        messagebox.showinfo("Eliminación exitosa")
+    else:
+        messagebox.showinfo("Eliminación cancelada")
 
 ventana = Tk()
 ventana.title("CRUD de Usuarios")

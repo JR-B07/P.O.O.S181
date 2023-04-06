@@ -69,3 +69,66 @@ class controladorBD:
          except sqlite3.OperationalError:
                 print("Error consulta")
 
+#Metodo para importar usuarios
+    def importUsu(self):
+        cons = self.conexionBD()
+        try:
+            cursor = cons.cursor()
+            selectQuery = "select * from TBRegistrados"
+            cursor.execute(selectQuery)
+            rsUsuarios = cursor.fetchall()
+            cons.close()
+            
+            return rsUsuarios
+        
+        except sqlite3.OperationalError:
+           
+            print("Error en la Consulta")
+
+
+# Método para actualizar un usuario
+    def ModifUsu(self, id, nom, cor, con):
+        # 1. Preparar una conexión
+        cons = self.conexionBD()
+        # 2. Verificar si el ID está vacío
+        if(id == ""):
+            messagebox.showwarning("ID vacío")
+            cons.close()
+        else:
+            try:
+                # 3. Preparar cursor y query
+                cursor = cons.cursor()
+                # 4. Encriptar la contraseña si es necesario
+                if con != "":
+                    con = self.encriptarCon(con)
+                # 5. Actualizar los datos del usuario
+                ActQuery = f"Actualizar TBRegistrados set nombre=?, correo=?, contraseña=? WHERE id={id}"
+                datos = (nom, cor, con)
+                cursor.execute(ActQuery, datos)
+                # 6. Guardar los cambios y cerrar la conexión
+                cons.commit()
+                cons.close()
+                messagebox.showinfo("Usuario actualizado")
+            except sqlite3.OperationalError:
+                print("Error actualizando")
+    
+    def elimUsuario(self, id):
+            # 1. Preparar una conexión
+            cons = self.conexionBD()
+            # 2. Verificar si el ID está vacío
+            if(id == ""):
+                messagebox.showwarning("ID vacío")
+                cons.close()
+            else:
+                try:
+                    # 3. Preparar cursor y query
+                    cursor = cons.cursor()
+                    # 4. Eliminar el usuario
+                    elimQuery = f"Borrar FROM TBRegistrados WHERE id={id}"
+                    cursor.execute(elimQuery)
+                    # 5. Guardar los cambios y cerrar la conexión
+                    cons.commit()
+                    cons.close()
+                    messagebox.showinfo("Exito", "Usuario eliminado")
+                except sqlite3.OperationalError:
+                    print("Error eliminando usuario")
