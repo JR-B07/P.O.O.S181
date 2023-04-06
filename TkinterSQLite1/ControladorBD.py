@@ -112,3 +112,23 @@ class controladorBD:
             except sqlite3.OperationalError:
                 print("Error actualizando")
     
+    def elimUsuario(self, id):
+            # 1. Preparar una conexión
+            cons = self.conexionBD()
+            # 2. Verificar si el ID está vacío
+            if(id == ""):
+                messagebox.showwarning("ID vacío")
+                cons.close()
+            else:
+                try:
+                    # 3. Preparar cursor y query
+                    cursor = cons.cursor()
+                    # 4. Eliminar el usuario
+                    elimQuery = f"Borrar FROM TBRegistrados WHERE id={id}"
+                    cursor.execute(elimQuery)
+                    # 5. Guardar los cambios y cerrar la conexión
+                    cons.commit()
+                    cons.close()
+                    messagebox.showinfo("Exito", "Usuario eliminado")
+                except sqlite3.OperationalError:
+                    print("Error eliminando usuario")
