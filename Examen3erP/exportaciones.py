@@ -5,7 +5,9 @@ import tkinter as tk
 from tkinter import messagebox
 from controlador import controlador
 
-
+# Creamos un objeto de la clase controlador
+controlador = controlador()
+ 
 ventana = Tk()
 ventana.title("BD EXPORTACIONES")
 ventana.geometry("500x300")
@@ -17,18 +19,17 @@ pestaña1 = ttk.Frame(panel)
 pestaña2 = ttk.Frame(panel)
 pestaña3 = ttk.Frame(panel)
 
-# Creamos un objeto de la clase controlador
-controlador = controlador()
+
 
 # Función para disparar el botón
 def ejecutaInsert():
-    controlador.insertarExpo(varId.get(),varTrans.get(),varAdua.get())
+    controlador.guardarExpo(varId.get(),varTrans.get(),varAdua.get())
 
 def ejecutaBorrar():
-    idUsuario = varIdElim.get()
+    IdExpo = varIdElim.get()
     confirmacion = messagebox.askyesno("Confirmación")
     if confirmacion:
-        controlador.elim(IdExpo)
+        controlador.elimExpo(IdExpo)
         messagebox.showinfo("Eliminación exitosa")
     else:
         messagebox.showinfo("Eliminación cancelada")
@@ -47,7 +48,7 @@ Entry(pestaña1, textvariable=varTrans).pack()
 
 varAdua = StringVar()
 Label(pestaña1, text="Aduana").pack()
-Entry(pestaña1, textvariable=varAdua, show="*").pack()
+Entry(pestaña1, textvariable=varAdua).pack()
 
 btnGuardar = Button(pestaña1, text="Guardar Información", command=ejecutaInsert)
 btnGuardar.pack()
@@ -57,14 +58,16 @@ btnGuardar.pack()
 titulo5 = Label(pestaña2,text="Eliminar Registro", fg='blue', font=("Modern",18)).pack()
 
 varIdElim = StringVar()
-Label(pestaña2, text="IDExpo: ").pack()
+Label(pestaña2, text="IdExpo: ").pack()
 Entry(pestaña2, textvariable=varIdElim).pack()
 
 btnEliminar = Button(pestaña2, text="Eliminar Registro", command=ejecutaBorrar)
 btnEliminar.pack()
 
-panel.add(pestaña1, text='Formulario de usuarios')
-panel.add(pestaña2, text='Buscar usuario')
-panel.add(pestaña3, text='Consultar usuarios')
+
+
+panel.add(pestaña1, text='Formulario de Registro')
+panel.add(pestaña2, text='Eliminar Registro')
+panel.add(pestaña3, text='Consultar x Aduana')
 
 ventana.mainloop()
