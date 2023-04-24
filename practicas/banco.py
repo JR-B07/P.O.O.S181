@@ -1,5 +1,5 @@
+from tkinter import *
 import tkinter as tk
-
 class Account:
     def __init__(self, account_number, account_holder, age, balance):
         self.account_number = account_number

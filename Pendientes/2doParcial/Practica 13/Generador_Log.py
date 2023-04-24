@@ -2,14 +2,13 @@ from tkinter import *
 from tkinter import messagebox
 from GenradorContra import PasswordGenerator
 
-
 def generate_password(self):
         length = int(self.length_entry.get())
-        chars = string.ascii_lowercase
+        chars = str.ascii_lowercase
         if self.uppercase_var.get():
-            chars += string.ascii_uppercase
+            chars += str.ascii_uppercase
         if self.special_var.get():
-            chars += string.punctuation
+            chars += str.punctuation
         password = "".join(random.choice(chars) for _ in range(length))
         self.password_label.configure(text=password)
 
