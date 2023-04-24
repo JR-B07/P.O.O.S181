@@ -64,7 +64,24 @@ Entry(pestaña2, textvariable=varIdElim).pack()
 btnEliminar = Button(pestaña2, text="Eliminar Registro", command=ejecutaBorrar)
 btnEliminar.pack()
 
+#Pestaña 3: Consultar Registro
 
+titulo3 = Label(pestaña3,text="Consultar Registros", fg='green', font=("Modern",18)).pack()
+
+varCons = tk.StringVar()
+botonCons = Button(pestaña3, text = "Importar", command=ejecutarConsulta).pack()
+
+treeview = ttk.Treeview(pestaña3, columns=(1,2,3,4), show = "headings", height="5")
+treeview.heading(1, text="ID")
+treeview.column(1, width=200)
+treeview.heading(2, text="Transporte")
+treeview.column(2, width=200)
+treeview.heading(3, text="Aduana")
+treeview.column(3, width=200)
+
+
+subCons = Label(pestaña3, text="Registros existentes ", fg="black",font=("Modern",18)).pack()
+treeview.pack()
 
 panel.add(pestaña1, text='Formulario de Registro')
 panel.add(pestaña2, text='Eliminar Registro')
