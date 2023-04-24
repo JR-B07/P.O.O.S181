@@ -56,3 +56,26 @@ class controlador:
                     messagebox.showinfo("Exito", "Registro eliminado")
                 except sqlite3.OperationalError:
                     print("Error eliminando usuario")
+    
+      # Metodo para buscar un usuario
+    def consultar(self,Id):
+        #1. Preparar una conexion
+        cons = self.conexionBD()
+        #2. Verifiacar si ID contiene algo
+        if(Id == ""):
+            messagebox.showwarning("ID vacío")
+            cons.close()
+        else:
+         try:
+                #3. Preparar cursor y querry
+                cursor = cons.cursor()
+                selecQuery = "select * from BDExportaciones where id="+id
+                #4. Ejecutar y guardar la consulta
+                cursor.execute(selecQuery)
+                rsExport = cursor.fetchall()
+                cons.close()
+            
+                return rsExport
+            
+         except sqlite3.OperationalError:
+                print("Error consulta")
