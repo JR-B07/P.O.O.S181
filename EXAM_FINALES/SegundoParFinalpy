@@ -1,0 +1,48 @@
+import tkinter as tk
+from tkinter import messagebox
+from SegundoPaLogica import ConvertidorArabicoRomano
+
+class Ventana:
+    
+    def __init__(self):
+        self.converter = ConvertidorArabicoRomano()
+
+        self.root = tk.Tk()
+        self.root.title("Conversor de números romanos y arábigos")
+
+        self.label = tk.Label(self.root, text="Ingrese un número entre 1 y 50:")
+        self.label.pack()
+        self.entry = tk.Entry(self.root)
+        self.entry.pack()
+
+        self.var = tk.IntVar()
+        self.var.set(0)
+        self.romano_arabigo_button = tk.Radiobutton(self.root, text="Romano a Arábigo", variable=self.var, value=1)
+        self.romano_arabigo_button.pack()
+        self.arabigo_romano_button = tk.Radiobutton(self.root, text="Arábigo a Romano", variable=self.var, value=0)
+        self.arabigo_romano_button.pack()
+
+        self.convert_button = tk.Button(self.root, text="Convertir", command=self.convertir)
+        self.convert_button.pack()
+
+    def convertir(self):
+        value = self.entry.get()
+        try:
+            value = int(value)
+            if value < 1 or value > 50:
+                raise ValueError
+        except ValueError:
+            messagebox.showerror("Error", "Ingrese un número válido entre 1 y 50")
+            return
+
+        if self.var.get() == 0:
+            resultado = self.converter.arabigo_romano(value)
+        else:
+            resultado = self.converter.romano_arabigo(value)
+        messagebox.showinfo("resultado", resultado)
+
+    def run(self):
+        self.root.mainloop()
+
+ventana = Ventana()
+ventana.run()
